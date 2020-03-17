@@ -1,0 +1,23 @@
+SELECT emp.employee_id, emp.first_name, dept.department_name, mgr.first_name 매니저이름
+    FROM employees emp, departments dept, employees mgr
+    WHERE emp.department_id = dept.department_id AND emp.manager_id = mgr.employee_id;
+    
+SELECT region_name, country_name 
+    FROM countries con, regions reg WHERE con.region_id = reg.region_id
+    ORDER BY region_name DESC, country_name DESC;
+    
+SELECT dept.department_id, dept.department_name, mgr.first_name, loc.city, con.country_name, reg.region_name
+    FROM employees emp, employees mgr, departments dept, locations loc, countries con, regions reg
+    WHERE emp.manager_id = mgr.employee_id AND emp.employee_id = dept.manager_id AND dept.location_id = loc.location_id
+        AND loc.country_id = con.country_id AND con.region_id = reg.region_id
+         ORDER BY dept.department_id;
+
+SELECT emp.employee_id, emp.first_name FROM employees emp, job_history jh, jobs j
+    WHERE emp.employee_id = jh.employee_id AND jh.job_id = j.job_id
+    AND j.job_title = 'Public Accountant' AND jh.end_date < sysdate; 
+    
+SELECT emp.employee_id, emp.first_name, emp.last_name, dept.department_name FROM employees emp, departments dept
+    WHERE emp.department_id = dept.department_id ORDER BY emp.last_name;
+    
+SELECT emp.first_name, emp.last_name, emp.hire_date FROM employees emp, employees mgr 
+    WHERE emp.hire_date < mgr.hire_date AND emp.manager_id = mgr.employee_id;
